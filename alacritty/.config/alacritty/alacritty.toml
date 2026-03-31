@@ -1,0 +1,7 @@
+import = [
+"~/.config/alacritty/themes/oxocarbon.toml",
+"~/.config/alacritty/font-size.toml",
+"~/.config/alacritty/font/font.toml",
+"~/.config/alacritty/font/font-size-override.toml",
+"~/.config/alacritty/shared.toml"
+]
