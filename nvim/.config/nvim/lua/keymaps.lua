@@ -30,6 +30,10 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent and reselect" })
 
+-- Move visual selection
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
 -- Toggle breakindent and wrapping
 vim.keymap.set("n", "<leader>tw", function()
 	-- Check the current local value for the window
