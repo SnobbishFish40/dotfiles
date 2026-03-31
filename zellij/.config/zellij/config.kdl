@@ -254,7 +254,7 @@ load_plugins {
 // Default: default
 // 
 
-theme "matte-black"
+theme "oxocarbon"
  
 // Choose the base input mode of zellij.
 // Default: normal

@@ -1,4 +1,4 @@
-# Omakub automatically edits this file when global font size is changed
+# Global font size
 # Override with font-size-override.toml
 [font]
 size = 9
