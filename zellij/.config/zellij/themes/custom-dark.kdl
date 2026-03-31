@@ -1,0 +1,16 @@
+themes {
+    custom-dark {
+        fg "#bebebe"
+        bg "#121212"
+        red "#D35F5F"
+        green "#FF5533"
+        yellow "#b91c1c"
+        blue "#e68e0d"
+        orange "#FFA066"
+        magenta "#D35F5F"
+        cyan "#bebebe"
+        black "#333333"
+        white "#bebebe"
+    }
+}
+

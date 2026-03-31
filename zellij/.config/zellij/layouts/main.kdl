@@ -1,0 +1,62 @@
+layout {
+  default_tab_template {
+    children
+      pane size=1 borderless=true {
+        plugin location="zjstatus" {
+          format_left  "#[bg=#1e1e2e,fg=#cdd6f4] {command_host_os_icon} {mode}#[bg=#1e1e2e,fg=#cdd6f4,bold] │   {session} │"
+          format_center "{tabs}"
+          format_right "#[bg=#1e1e2e,fg=#cdd6f4] {swap_layout} │ {datetime} "
+          format_space  "#[bg=#1e1e2e]"
+
+          mode_normal        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#1e1e2e,fg=#A627F5]󱓺 "
+          mode_locked        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#1e1e2e,fg=#f38ba8] "
+          mode_resize        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RESIZE "
+          mode_pane          "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] PANE "
+          mode_tab           "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] TAB "
+          mode_scroll        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SCROLL "
+          mode_enter_search  "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] ENTER_SEARCH "
+          mode_search        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SEARCH "
+          mode_rename_tab    "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME_TAB "
+          mode_rename_pane   "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME_PANE "
+          mode_session       "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SESSION "
+          mode_move          "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] MOVE "
+          mode_prompt        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] PROMPT "
+          mode_tmux          "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] TMUX "
+
+          tab_normal "#[bg=#1e1e2e,fg=#6c7086] #[bg=#1e1e2e,fg=#6c7086]{index}:{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=#1e1e2e,fg=#6c7086]"
+          tab_active "#[bg=#89b4fa,fg=#1e1e2e] #[bg=#89b4fa,fg=#1e1e2e]{index}:{name} {sync_indicator}{fullscreen_indicator}{floating_indicator}#[bg=#89b4fa,fg=#1e1e2e]"
+
+          tab_sync_indicator       "󰓦 "
+          tab_fullscreen_indicator "󱟱  "
+          tab_floating_indicator   "󰉈 "
+
+          command_host_os_icon_command "sh -c \"echo $(uname -s | grep -qi 'darwin' && echo '󰀵')$(uname -s | grep -qi 'linux' && echo '')$(uname -s | grep -qi 'nt' && echo '󰖳')\""
+          command_host_os_icon_format "{stdout}"
+          command_host_os_icon_interval "100"
+          command_host_os_icon_rendermode "static"
+
+          datetime          "{format}"
+          datetime_format   "%d-%m-%Y %H:%M"
+          datetime_timezone "Europe/London"
+          datetime_interval "10"
+        }
+      }
+  }
+
+  tab name="nvim" {
+    pane split_direction="vertical" {
+      pane
+    }
+  }
+  tab name="terminal" focus=true {
+    pane split_direction="vertical" {
+      pane
+    }
+  }
+  tab name="misc" {
+    pane split_direction="vertical" {
+      pane
+    }
+  }
+
+}
