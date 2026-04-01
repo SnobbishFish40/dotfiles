@@ -16,6 +16,9 @@ My personal development environment configuration, managed with [GNU Stow](https
 - [Alacritty](https://alacritty.org/)
 - [Zellij](https://zellij.dev/) (0.44+)
 - [GNU Stow](https://www.gnu.org/software/stow/)
+- [xdotool](https://github.com/jordansissel/xdotool) (for session switching)
+- [zoxide](https://github.com/ajeetdsouza/zoxide) (for fuzzy directory picking)
+- [fzf](https://github.com/junegunn/fzf) (used by zoxide's interactive mode)
 - [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter) (0.25+ for Treesitter parser compilation)
 - A [Nerd Font](https://www.nerdfonts.com/) for icons
 
