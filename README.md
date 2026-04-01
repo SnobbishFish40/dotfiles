@@ -4,11 +4,13 @@ My personal development environment configuration, managed with [GNU Stow](https
 
 ## What's included
 
-**Neovim**:  custom config built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) with lazy.nvim as the plugin manager. Includes Telescope, Treesitter, LSP, Harpoon, Oil, Gitsigns, and more. Themes: oxocarbon and tokyonight.
+**Neovim**:  custom config built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) with lazy.nvim as the plugin manager. Includes Telescope, Treesitter, LSP, Harpoon, Oil, Gitsigns, and more.
 
 **Alacritty**:  GPU-accelerated terminal, custom configured with automatic font size switching between laptop and external monitor via a udev-triggered script.
 
 **Zellij**:  terminal multiplexer with custom keybindings (locked mode by default, `Ctrl+Space` to unlock), pane frames disabled, compact layout, and a collection of themes. Includes zjstatus plugin for a custom status bar.
+
+**sesh**:  a "fuzzy" session switcher script at `zellij/.local/bin/sesh`, run `sesh --help` for usage.
 
 ## Dependencies
 

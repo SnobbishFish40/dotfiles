@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    echo "Usage: sesh [session-name]"
+    echo ""
+    echo "  sesh              Open zoxide picker to select a directory and create/attach to a session"
+    echo "  sesh [name]       Attach to an existing session or create one in the current directory"
+    echo ""
+    echo "If run inside zellij, opens a new terminal window and detaches from the current session."
+    exit 0
+fi
+
 # If inside zellij, open a new alacritty with sesh
 # then detach and kill previous alacritty window
 if [[ -n "$ZELLIJ" ]]; then
