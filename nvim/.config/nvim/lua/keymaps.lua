@@ -1,8 +1,14 @@
 -- [[ Basic Keymaps ]]
 -- See `:help vim.keymap.set()`
 
+-- Block Ex mode
+vim.keymap.set("n", "Q", "<nop>")
+
 -- Shortcut for yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
+
+-- Make file in buffer executable
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +[x]" })
 
 -- Shortcut to nvim theme selection
 vim.keymap.set({ "n" }, "<leader>T", "<cmd>:Telescope colorscheme<CR>", { desc = "Open [t]heme menu" })
@@ -25,6 +31,18 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Navigate quickfix list
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+
+-- Search and replace word under cursor
+vim.keymap.set(
+	"n",
+	"<leader>r",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Search and [r]eplace" }
+)
 
 -- Keep indent block selected for further indents in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent and reselect" })
