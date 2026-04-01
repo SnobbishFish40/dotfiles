@@ -4,6 +4,7 @@ if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     echo "Usage: sesh [session-name]"
     echo ""
     echo "  sesh              Open zoxide picker to select a directory and create/attach to a session"
+    echo "                    If cancelled, falls back to fzf with common project directories"
     echo "  sesh [name]       Attach to an existing session or create one in the current directory"
     echo ""
     echo "If run inside zellij, opens a new terminal window and detaches from the current session."
