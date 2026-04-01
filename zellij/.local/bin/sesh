@@ -29,7 +29,8 @@ else
     # Pick a directory with zoxide
     ZOXIDE_RESULT=$(zoxide query -i)
     if [[ -z "$ZOXIDE_RESULT" ]]; then
-        exit 0
+        # Fallback to common directories (can change/add relevant directories)
+        ZOXIDE_RESULT=$(find ~/projects ~ -mindepth 1 -maxdepth 2 -type d 2>/dev/null | fzf)
     fi
     SESSION_TITLE=$(basename "$ZOXIDE_RESULT")
     TARGET_DIR="$ZOXIDE_RESULT"
