@@ -7,6 +7,11 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Shortcut for yank to system clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
 
+-- Toggle music play/pause
+vim.keymap.set("n", "<leader>mp", function()
+	vim.fn.jobstart("playerctl play-pause --player=spotify", { detach = true })
+end, { desc = "Toggle [M]usic [P]lay/Pause" })
+
 -- Make file in buffer executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +[x]" })
 
