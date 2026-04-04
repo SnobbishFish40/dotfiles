@@ -12,6 +12,11 @@ vim.keymap.set("n", "<leader>mp", function()
 	vim.fn.jobstart("playerctl play-pause --player=spotify", { detach = true })
 end, { desc = "Toggle [M]usic [P]lay/Pause" })
 
+-- Trigger music skip
+vim.keymap.set("n", "<leader>ms", function()
+	vim.fn.jobstart("playerctl next --player=spotify", { detach = true })
+end, { desc = "[M]usic [S]kip" })
+
 -- Make file in buffer executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +[x]" })
 
