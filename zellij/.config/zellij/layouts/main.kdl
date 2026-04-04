@@ -5,19 +5,20 @@ layout {
         plugin location="zjstatus" {
           format_left  "#[bg=#1e1e2e,fg=#cdd6f4] {command_host_os_icon} {mode}#[bg=#1e1e2e,fg=#cdd6f4,bold] │   {session} │"
           format_center "{tabs}"
-          format_right "#[bg=#1e1e2e,fg=#cdd6f4] {swap_layout} │ {datetime} "
+          format_right "#[bg=#1e1e2e,fg=#cdd6f4] {swap_layout} │ {datetime} 󰃰"
           format_space  "#[bg=#1e1e2e]"
 
+          // TODO: replace word indicators with nerd font symbols
           mode_normal        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#1e1e2e,fg=#A627F5]󱓺 "
           mode_locked        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#1e1e2e,fg=#f38ba8] "
           mode_resize        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RESIZE "
           mode_pane          "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] PANE "
           mode_tab           "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] TAB "
           mode_scroll        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SCROLL "
-          mode_enter_search  "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] ENTER_SEARCH "
+          mode_enter_search  "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] ENTER SEARCH "
           mode_search        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SEARCH "
-          mode_rename_tab    "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME_TAB "
-          mode_rename_pane   "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME_PANE "
+          mode_rename_tab    "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME TAB "
+          mode_rename_pane   "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] RENAME PANE "
           mode_session       "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] SESSION "
           mode_move          "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] MOVE "
           mode_prompt        "#[bg=#1e1e2e,fg=#1e1e2e]│#[bg=#89b4fa,fg=#1e1e2e] PROMPT "
@@ -34,6 +35,8 @@ layout {
           command_host_os_icon_format "{stdout}"
           command_host_os_icon_interval "100"
           command_host_os_icon_rendermode "static"
+
+          // TODO: Add music command
 
           datetime          "{format}"
           datetime_format   "%d-%m-%Y %H:%M"
