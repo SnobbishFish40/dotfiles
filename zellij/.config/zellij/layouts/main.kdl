@@ -5,7 +5,7 @@ layout {
         plugin location="zjstatus" {
           format_left  "#[bg=#1e1e2e,fg=#cdd6f4] {command_host_os_icon} {mode}#[bg=#1e1e2e,fg=#cdd6f4,bold] │   {session} │"
           format_center "{tabs}"
-          format_right "#[bg=#1e1e2e,fg=#cdd6f4] {swap_layout} │ {datetime} 󰃰"
+          format_right "#[bg=#1e1e2e,fg=#cdd6f4] │ {command_music}│ {datetime} 󰃰"
           format_space  "#[bg=#1e1e2e]"
 
           // TODO: replace word indicators with nerd font symbols
@@ -36,7 +36,10 @@ layout {
           command_host_os_icon_interval "100"
           command_host_os_icon_rendermode "static"
 
-          // TODO: Add music command
+          command_music_command     "/home/reuben/.local/bin/song.sh spotify"
+          command_music_format      "{stdout}"
+          command_music_interval    "1"
+          command_music_rendermode  "static"
 
           datetime          "{format}"
           datetime_format   "%d-%m-%Y %H:%M"
