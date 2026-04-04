@@ -19,5 +19,6 @@ save_to_clipboard = true
 
 [keyboard]
 bindings = [
-{ key = "F11", action = "ToggleFullscreen" }
+{ key = "F11", action = "ToggleFullscreen" },
+{ key = "[", mods = "Control", action = "ToggleViMode"}
 ]
