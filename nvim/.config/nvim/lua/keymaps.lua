@@ -8,14 +8,19 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
 
 -- Toggle music play/pause
-vim.keymap.set("n", "<leader>mp", function()
+vim.keymap.set("n", "<leader>mP", function()
 	vim.fn.jobstart("playerctl play-pause --player=spotify", { detach = true })
 end, { desc = "Toggle [M]usic [P]lay/Pause" })
 
--- Trigger music skip
-vim.keymap.set("n", "<leader>ms", function()
+-- Trigger music next
+vim.keymap.set("n", "<leader>mn", function()
 	vim.fn.jobstart("playerctl next --player=spotify", { detach = true })
-end, { desc = "[M]usic [S]kip" })
+end, { desc = "[M]usic [N]ext" })
+
+-- Trigger music prev
+vim.keymap.set("n", "<leader>mp", function()
+	vim.fn.jobstart("playerctl previous --player=spotify", { detach = true })
+end, { desc = "[M]usic [P]rev" })
 
 -- Make file in buffer executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "chmod +[x]" })
