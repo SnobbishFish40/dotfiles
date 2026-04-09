@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MAX_LEN=30
+MAX_LEN=20
 
 song_name=$(playerctl metadata --format "{{ title }}" --player=$1)
 status=$(playerctl status --player=$1)
