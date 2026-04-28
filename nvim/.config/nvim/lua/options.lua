@@ -52,6 +52,15 @@ vim.o.scrolloff = 10
 -- raise a confirmation dialog
 vim.o.confirm = true
 
+-- Indentation
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+
+-- Color column
+vim.opt.colorcolumn = "79"
+
 -- Diagnostic Config
 -- See :help vim.diagnostic.Opts
 vim.diagnostic.config({
@@ -61,8 +70,8 @@ vim.diagnostic.config({
 	underline = { severity = { min = vim.diagnostic.severity.WARN } },
 
 	-- Can switch between these
-	virtual_text = false, -- Text shows up at the end of the line
-	virtual_lines = true, -- Text shows up underneath the line, with virtual lines
+	virtual_text = true, -- Text shows up at the end of the line
+	virtual_lines = false, -- Text shows up underneath the line, with virtual lines
 
 	-- Diagnostic text wraps
 	wrap = true,

@@ -5,6 +5,7 @@ return {
 	branch = "main",
 	-- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
 	config = function()
+		local ts = require("nvim-treesitter")
 		local parsers = {
 			"bash",
 			"c",
@@ -18,7 +19,12 @@ return {
 			"vim",
 			"vimdoc",
 		}
-		require("nvim-treesitter").install(parsers)
+		ts.install(parsers)
+		ts.setup({
+			indent = {
+				enable = true,
+			},
+		})
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function(args)
 				local buf, filetype = args.buf, args.match
@@ -36,7 +42,7 @@ return {
 				vim.treesitter.start(buf, language)
 
 				-- enables treesitter based indentation
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+				-- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end,
 		})
 	end,
