@@ -1,4 +1,4 @@
-# Used by the About.desktop, Activity.desktop, Docker.desktop, Omakub.desktop, and Neovim.desktop apps
+# Used by the About.desktop, Activity.desktop, Docker.desktop, and Neovim.desktop apps
 import = [
 "~/.config/alacritty/themes/oxocarbon.toml",
 "~/.config/alacritty/font.toml",

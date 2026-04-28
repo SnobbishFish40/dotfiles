@@ -1,3 +1,3 @@
-# Overrides Omakub global font size in font-size.toml
+# Overrides global font size in font-size.toml
 [font]
-size = 26
+size = 22

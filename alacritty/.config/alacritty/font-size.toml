@@ -1,4 +1,4 @@
 # Global font size
-# Override with font-size-override.toml
+# Override with ./font/font-size-override.toml
 [font]
 size = 9
