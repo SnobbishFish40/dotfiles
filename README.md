@@ -4,13 +4,15 @@ My personal development environment configuration, managed with [GNU Stow](https
 
 ## What's included
 
-**Neovim**:  custom config built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) with lazy.nvim as the plugin manager. Includes Telescope, Treesitter, LSP, Harpoon, Oil, Gitsigns, and more.
+**Neovim**:  custom config built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) with lazy.nvim as the plugin manager. Includes Telescope, Treesitter, LSP, Harpoon, Oil, Gitsigns, Trouble, Marks, and more. Also includes keymaps for Spotify playback control (play/pause, next, previous) via `playerctl`.
 
 **Alacritty**:  GPU-accelerated terminal, custom configured with automatic font size switching between laptop and external monitor via a udev-triggered script.
 
-**Zellij**:  terminal multiplexer with custom keybindings (locked mode by default, `Ctrl+Space` to unlock), pane frames disabled, compact layout, and a collection of themes. Includes zjstatus plugin for a custom status bar.
+**Zellij**:  terminal multiplexer with custom keybindings (locked mode by default, `Ctrl+Space` to unlock), pane frames disabled, compact layout, and a collection of themes. Includes zjstatus plugin for a custom status bar with a live music indicator showing the currently playing song.
 
 **sesh**:  a "fuzzy" session switcher script at `zellij/.local/bin/sesh`, run `sesh --help` for usage.
+
+**song.sh**:  a status bar helper script at `zellij/.local/bin/song.sh` that outputs the currently playing song name and play/pause icon via `playerctl`, used by the zjstatus music indicator.
 
 ## Dependencies
 
@@ -18,6 +20,7 @@ My personal development environment configuration, managed with [GNU Stow](https
 - [Alacritty](https://alacritty.org/)
 - [Zellij](https://zellij.dev/) (0.44+)
 - [GNU Stow](https://www.gnu.org/software/stow/)
+- [playerctl](https://github.com/altdesktop/playerctl) (for Spotify keymaps and song status bar)
 - [xdotool](https://github.com/jordansissel/xdotool) (for session switching)
 - [zoxide](https://github.com/ajeetdsouza/zoxide) (for fuzzy directory picking)
 - [fzf](https://github.com/junegunn/fzf) (used by zoxide's interactive mode)
