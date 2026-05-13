@@ -98,6 +98,7 @@ return {
 			emmet_language_server = {},
 			vtsls = {},
 			hls = {},
+			jdtls = {},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})

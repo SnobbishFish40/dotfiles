@@ -17,6 +17,14 @@ vim.o.wrap = false
 -- Enable undo/redo changes even after closing and reopening a file
 vim.o.undofile = true
 
+-- Disable comment auto-insert on newline creation
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
+})
+
 -- Case-insensitive searching UNLESS \C or capital letters in the search term
 vim.o.ignorecase = true
 vim.o.smartcase = true

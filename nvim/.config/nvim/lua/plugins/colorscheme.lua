@@ -75,6 +75,10 @@ return {
 				styles = {
 					italic = false,
 				},
+				highlight_groups = {
+					Normal = { bg = "#000000" },
+					NormalNC = { bg = "#000000" },
+				},
 			})
 		end,
 	},

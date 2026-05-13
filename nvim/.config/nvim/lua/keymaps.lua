@@ -32,8 +32,8 @@ vim.keymap.set({ "n" }, "<leader>T", "<cmd>:Telescope colorscheme<CR>", { desc =
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Open diagnostic quickfix list
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+-- Close current quickfix list
+vim.keymap.set("n", "<leader>q", "<cmd>cclose<CR>", { desc = "Close current [Q]uickfix list" })
 
 -- Paste from yank register when pasting over text
 -- Ensures yanked text isn't overwritten
