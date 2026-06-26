@@ -27,6 +27,7 @@ return {
 			-- 'enter' for enter to accept
 			-- 'none' for no mappings
 			preset = "default",
+			["<C-k>"] = { "show_documentation", "hide_documentation", "fallback" },
 		},
 
 		appearance = {

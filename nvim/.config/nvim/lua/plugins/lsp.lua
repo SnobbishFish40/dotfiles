@@ -99,6 +99,26 @@ return {
 			vtsls = {},
 			hls = {},
 			jdtls = {},
+			ruff = {
+				on_attach = function(client)
+					-- Use basedpyright better hover
+					client.server_capabilities.hoverProvider = false
+				end,
+			},
+			basedpyright = {
+				settings = {
+					basedpyright = {
+						disableOrganizeImports = true, -- ruff handles import sorting
+						analysis = {
+							diagnosticSeverityOverrides = {
+								-- ruff already catches these
+								reportUnusedImport = "none",
+								reportUnusedVariable = "none",
+							},
+						},
+					},
+				},
+			},
 		}
 
 		local ensure_installed = vim.tbl_keys(servers or {})
