@@ -1,0 +1,12 @@
+format = "$directory$git_branch$git_status$character"
+add_newline = false
+
+[directory]
+truncation_length = 3
+
+[git_branch]
+symbol = " "
+
+[character]
+success_symbol = "[\uf0a9](bold green) "
+error_symbol = "[\uf0a9](bold red) "
