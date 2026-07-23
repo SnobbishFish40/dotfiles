@@ -1,4 +1,10 @@
-venv() { source "${1:-.venv}/bin/activate"; }
+venv() { 
+  local path="${1:-.venv}"
+  if [ ! -f "$path/bin/activate" ]; then
+    python -m venv "$path" || return
+  fi
+  source "$path/bin/activate"; 
+}
 
 zdel() { zellij delete-session $1 --force; }
 complete -F _sesh_completions zdel
