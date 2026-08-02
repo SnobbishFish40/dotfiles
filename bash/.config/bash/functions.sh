@@ -6,8 +6,10 @@ venv() {
   source "$path/bin/activate"; 
 }
 
+source ~/.local/share/sesh/sesh-completion.bash
+source ~/.local/share/zesh/zesh-completion.bash
+
 zdel() { zellij delete-session $1 --force; }
-complete -F _sesh_completions zdel
 
 compress() { tar -czf "${1%/}.tar.gz" "${1%/}"; }
 

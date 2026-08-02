@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+#
+# sesh - tmux session manager
+#
+# Usage:
+#   sesh              Open fzf picker (sessions, zoxide dirs, found dirs)
+#   sesh <name>        Attach to existing session, or create one from a
+#                       matching subdirectory, or create one in $PWD
+#
+# Deps: tmux, fzf (required). zoxide, fd (optional, used if present).
+
+set -euo pipefail
+
+# Where to look for "plain" directories in the picker, and how deep.
+SESH_SEARCH_PATH="${SESH_SEARCH_PATH:-$HOME}"
+SESH_SEARCH_DEPTH="${SESH_SEARCH_DEPTH:-3}"
+
+# ---------------------------------------------------------------------------
+# helpers
+# ---------------------------------------------------------------------------
+
+sesh_session_exists() {
+    tmux has-session -t "=$1" 2>/dev/null
+}
+
+sesh_attach() {
+    local target="$1"
+    if [[ -n "${TMUX:-}" ]]; then
+        tmux switch-client -t "=$target"
+    else
+        tmux attach-session -t "=$target"
+    fi
+}
+
+sesh_list_sessions() {
+    tmux list-sessions -F '#{session_name}' 2>/dev/null || true
+}
+
+# sanitize a proposed session name (tmux dislikes '.' and ':')
+sesh_sanitize_name() {
+    printf '%s' "$1" | tr '.:' '__'
+}
+
+sesh_create() {
+    local raw_name="$1"
+    local dir="$2"
+    local name
+    name="$(sesh_sanitize_name "$raw_name")"
+
+    if sesh_session_exists "$name"; then
+        sesh_attach "$name"
+        return
+    fi
+
+    tmux new-session -d -s "$name" -c "$dir" -n nvim
+    tmux send-keys -t "${name}:nvim" "nvim ." C-m
+
+    tmux new-window -t "$name" -n agent -c "$dir"
+    tmux new-window -t "$name" -n bash -c "$dir"
+
+    tmux select-window -t "${name}:nvim"
+
+    sesh_attach "$name"
+}
+
+# ---------------------------------------------------------------------------
+# picker (no args)
+# ---------------------------------------------------------------------------
+
+sesh_picker() {
+    local sessions zoxide_dirs found_dirs dirs entries selection prefix value name
+
+    sessions="$(sesh_list_sessions | awk 'NF' | sed 's/^/[SESSION] /')"
+
+    zoxide_dirs=""
+    if command -v zoxide >/dev/null 2>&1; then
+        zoxide_dirs="$(zoxide query -l 2>/dev/null || true)"
+    fi
+
+    found_dirs=""
+    if command -v fd >/dev/null 2>&1; then
+        found_dirs="$(fd . "$SESH_SEARCH_PATH" --type d --max-depth "$SESH_SEARCH_DEPTH" \
+            --hidden --exclude .git 2>/dev/null || true)"
+    else
+        found_dirs="$(find "$SESH_SEARCH_PATH" -maxdepth "$SESH_SEARCH_DEPTH" -type d \
+            -not -path '*/.git*' 2>/dev/null || true)"
+    fi
+
+    # zoxide entries first (frecency order), then everything else found,
+    # de-duplicated, keeping first occurrence.
+    dirs="$( { printf '%s\n' "$zoxide_dirs"; printf '%s\n' "$found_dirs"; } \
+        | awk 'NF' | awk '!seen[$0]++' | sed 's/^/[DIR] /')"
+
+    entries="$(printf '%s\n%s\n' "$sessions" "$dirs" | awk 'NF')"
+
+    if [[ -z "$entries" ]]; then
+        echo "sesh: nothing to show (no sessions, no dirs found)" >&2
+        exit 1
+    fi
+
+    selection="$(printf '%s\n' "$entries" | fzf \
+        --prompt="sesh> " \
+        --header="enter: select   [SESSION] attaches   [DIR] creates/attaches" \
+        --no-sort)"
+
+    [[ -z "$selection" ]] && exit 0
+
+    prefix="${selection%% *}"
+    value="${selection#* }"
+
+    if [[ "$prefix" == "[SESSION]" ]]; then
+        sesh_attach "$value"
+    else
+        name="$(basename "$value")"
+        sesh_create "$name" "$value"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# direct arg (sesh <name>)
+# ---------------------------------------------------------------------------
+
+sesh_by_arg() {
+    local arg="$1"
+
+    # 1. existing session with that name
+    if sesh_session_exists "$arg"; then
+        sesh_attach "$arg"
+        return
+    fi
+
+    # 2. a directory matching that name under the current dir
+    if [[ -d "./$arg" ]]; then
+        sesh_create "$arg" "$(cd "./$arg" && pwd)"
+        return
+    fi
+
+    # 3. fall back: new session named $arg, rooted in $PWD
+    sesh_create "$arg" "$(pwd)"
+}
+
+# ---------------------------------------------------------------------------
+# main
+# ---------------------------------------------------------------------------
+
+main() {
+    if ! command -v tmux >/dev/null 2>&1; then
+        echo "sesh: tmux is not installed" >&2
+        exit 1
+    fi
+
+    if [[ $# -eq 0 ]]; then
+        if ! command -v fzf >/dev/null 2>&1; then
+            echo "sesh: fzf is required for the picker (or run 'sesh <name>')" >&2
+            exit 1
+        fi
+        sesh_picker
+    else
+        sesh_by_arg "$1"
+    fi
+}
+
+main "$@"

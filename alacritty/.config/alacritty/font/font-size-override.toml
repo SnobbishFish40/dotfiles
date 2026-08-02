@@ -1,3 +1,1 @@
-# Overrides global font size in font-size.toml
-[font]
-size = 22
+/home/reuben/.config/alacritty/font/font-monitor.toml
