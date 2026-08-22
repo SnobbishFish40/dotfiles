@@ -14,7 +14,11 @@ fi
 # If inside zellij, open a new alacritty with sesh
 # then detach and kill previous alacritty window
 if [[ -n "$ZELLIJ" ]]; then
-    ALACRITTY_PID=$(xdotool getactivewindow getwindowpid)
+    if [[ "$(uname)" == "Darwin" ]]; then
+        ALACRITTY_PID=$(osascript -e 'tell application "System Events" to unix id of first process whose frontmost is true')
+    else
+        ALACRITTY_PID=$(xdotool getactivewindow getwindowpid)
+    fi
     ZELLIJ="" alacritty --working-directory "$(pwd)" -e sesh "$@" &
     disown
     zellij action detach
