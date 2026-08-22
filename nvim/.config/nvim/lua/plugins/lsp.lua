@@ -121,6 +121,18 @@ return {
 			},
 		}
 
+		-- Per-machine server overrides, from the untracked `lua/local/servers.lua`.
+		-- Add or tweak servers there; set one to `false` to disable it on this machine.
+		local ok, local_servers = pcall(require, "local.servers")
+		if ok and type(local_servers) == "table" then
+			servers = vim.tbl_deep_extend("force", servers, local_servers)
+			for name, server in pairs(servers) do
+				if server == false then
+					servers[name] = nil
+				end
+			end
+		end
+
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {})
 

@@ -1,1 +1,4 @@
+# Per-machine, untracked config. Each machine creates its own.
 alacritty/.config/alacritty/font/font-size-override.toml
+alacritty/.config/alacritty/local.toml
+nvim/.config/nvim/lua/local/
