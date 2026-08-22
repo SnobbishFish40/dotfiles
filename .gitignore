@@ -1,3 +1,8 @@
+# Machine-specific stow package. Holds whole-file configs for tools with no
+# import/include mechanism (starship), so they can't be layered like the ones
+# below. Stow it with `stow local`; never committed.
+local/
+
 # Per-machine, untracked config. Each machine creates its own.
 alacritty/.config/alacritty/font/font-size-override.toml
 alacritty/.config/alacritty/local.toml
